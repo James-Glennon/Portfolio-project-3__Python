@@ -126,6 +126,8 @@ def new_game():
         main()
     elif replay.upper() == 'N':
         exit()
+    else:
+        new_game()
 
 def main():
     """
