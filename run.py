@@ -107,15 +107,29 @@ def count_hit_ships(board):
 def main():
     """
     Runs all primary functions
+    While loop repeatedly runs guess_location > check_guess
+        the while loop is broken when turns is equal to zero,
+        or if the number of 'x' marks on GUESS_BOARD is 5 or greater.
+    game ends when the loop is broken.
     """
+    print('Welcome to battleships')
+    print(f'You have {TURNS} to sink all 5 ships.')
     create_ships(HIDDEN_BOARD)
     print('Hidden board')
     print_board(HIDDEN_BOARD)
     print('')
     print('Guess board')
     print_board(GUESS_BOARD)
-    guess_row, guess_column = guess_location()
-    check_guess(guess_row, guess_column)
-    count_hit_ships(GUESS_BOARD)
+    while TURNS > 0:
+        guess_row,guess_column = guess_location()
+        check_guess(guess_row,guess_column)
+        if count_hit_ships(GUESS_BOARD) >= 5:
+            print ('\nYou hit all battleships. You win!')
+            break
+        elif TURNS == 0:
+            print('\nGame Over, you ran out of turns')
+            print('Ship Locations')
+            print_board(HIDDEN_BOARD)
+            break
 
 main()
