@@ -31,11 +31,36 @@ def create_ships(board):
             ship_row,ship_column = randint(0,7), randint(0,7)
         board[ship_row][ship_column] = 'x'
 
+def guess_location():
+    """
+    Prompts the player to input a row number.
+    Then prompts the player to input a column heading, converts to uppercase.
+    Repeats the request if the input is not in the expected range.
+    function returns the input as a tuple of (row,column)
+    """
+    row = input(f'Please enter a row from 1 to 8: ')
+    while str(row) not in '12345678':
+        print('Please enter a valid row')
+        row = input(f'Please enter a row from 1 to 8: ')
+    
+    column = input(f'Please enter a column from A to H: ').upper()
+    while column not in 'ABCDEFGH':
+        print('Please enter a valid column')
+        column = input(f'Please enter a column from A to H: ').upper()
 
-create_ships(HIDDEN_BOARD)
+    print (row,column)
 
-print('Hidden board')
-print_board(HIDDEN_BOARD)
-print('')
-print('Guess board')
-print_board(GUESS_BOARD)
+
+def main():
+    """
+    Runs all primary functions
+    """
+    create_ships(HIDDEN_BOARD)
+    print('Hidden board')
+    print_board(HIDDEN_BOARD)
+    print('')
+    print('Guess board')
+    print_board(GUESS_BOARD)
+    guess_location()
+
+main()
