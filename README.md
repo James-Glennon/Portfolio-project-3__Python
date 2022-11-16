@@ -1,6 +1,7 @@
 # Portfolio Project 3: Python Battleships
 Author: *James Glennon*
 
+[live web address](https://battleships-python-portfolio-3.herokuapp.com/)
 ![Am I responsive UX image](images/responsive_image.png)
 ---
 ## How to play:
@@ -77,8 +78,8 @@ The concept was one of the suggested concepts provided by code institute.
 
 The layout of this Readme.md is heavily based on the example provided by code institute.
 
-This code was written closely following the step-by-step instruction found at (Youtube)[https://www.youtube.com/watch?v=tF1WRCrd_HQ],
-published by (Knowledge Mavens)[https://www.youtube.com/c/KnowledgeMavens1]
+This code was written closely following the step-by-step instruction found at [Youtube](https://www.youtube.com/watch?v=tF1WRCrd_HQ),
+published by [Knowledge Mavens](https://www.youtube.com/c/KnowledgeMavens1)
 
 The try/except functions were written following examples from code institute instructional material.
 
