@@ -111,6 +111,22 @@ def count_hit_ships(board):
                 count += 1
     return count
 
+def new_game():
+    """
+    Restarts the game without exiting the program
+    """
+    replay = input('Would you like to play again? (y/n): \n')
+    if replay.upper() == 'Y':
+        global HIDDEN_BOARD 
+        HIDDEN_BOARD = [[' '] * 8 for x in range(8)]#The grid which maps the ship locations
+        global GUESS_BOARD 
+        GUESS_BOARD = [[' '] * 8 for x in range(8)]#The grid which marks the player's previous guesses
+        global TURNS
+        TURNS = 20
+        main()
+    elif replay.upper() == 'N':
+        exit()
+
 def main():
     """
     Runs all primary functions
@@ -119,7 +135,7 @@ def main():
         or if the number of 'x' marks on GUESS_BOARD is 5 or greater.
     game ends when the loop is broken.
     """
-    print('Welcome to battleships')
+    print('\nWelcome to battleships')
     print(f'You have {TURNS} to sink all 5 ships.')
     create_ships(HIDDEN_BOARD)
     print('Hidden board')
@@ -138,5 +154,6 @@ def main():
             print('Ship Locations')
             print_board(HIDDEN_BOARD)
             break
-
+        
+    new_game()
 main()
