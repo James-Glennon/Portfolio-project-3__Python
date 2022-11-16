@@ -90,6 +90,20 @@ def increment_turns():
     TURNS -= 1
     print(f'Turns remaining: {TURNS}')
 
+def count_hit_ships(board):
+    """
+    Counts the number of 'x' marks on the argument board.
+    Checks each cell, of each row individually using nested for loops.
+    returns the total number of 'x'.
+    Is the victory condition for the player.
+    """
+    count = 0
+    for row in board:
+        for cell in row:
+            if cell == 'x':
+                count += 1
+    return count
+
 def main():
     """
     Runs all primary functions
@@ -102,5 +116,6 @@ def main():
     print_board(GUESS_BOARD)
     guess_row, guess_column = guess_location()
     check_guess(guess_row, guess_column)
+    count_hit_ships(GUESS_BOARD)
 
 main()
