@@ -41,15 +41,15 @@ def guess_location():
     Repeats the request if the input is not in the expected range.
     function returns the input as a tuple of (row,column)
     """
-    row = input(f'Please enter a row from 1 to 8: ')
+    row = input(f'Please enter a row from 1 to 8: \n')
     while str(row) not in '12345678':
         print('Please enter a valid row')
-        row = input(f'Please enter a row from 1 to 8: ')
+        row = input(f'Please enter a row from 1 to 8: \n')
     
-    column = input(f'Please enter a column from A to H: ').upper()
+    column = input(f'Please enter a column from A to H: \n').upper()
     while column not in 'ABCDEFGH':
         print('Please enter a valid column')
-        column = input(f'Please enter a column from A to H: ').upper()
+        column = input(f'Please enter a column from A to H: \n').upper()
 
     return (row,column)
 
@@ -140,10 +140,6 @@ def main():
     print('\nWelcome to battleships')
     print(f'You have {TURNS} to sink all 5 ships.')
     create_ships(HIDDEN_BOARD)
-    print('Hidden board')
-    print_board(HIDDEN_BOARD)
-    print('')
-    print('Guess board')
     print_board(GUESS_BOARD)
     while TURNS > 0:
         guess_row,guess_column = guess_location()
