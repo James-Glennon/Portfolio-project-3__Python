@@ -3,7 +3,7 @@ from random import randint
 HIDDEN_BOARD = [[' '] * 8 for x in range(8)]#The grid which maps the ship locations
 GUESS_BOARD = [[' '] * 8 for x in range(8)]#The grid which marks the player's previous guesses
 
-turns = 20
+TURNS = 20
 letters_to_numbers = {'A':0,'B':1,'C':2,'D':3,'E':4,'F':5,'G':6,'H':7}
 
 
@@ -82,7 +82,13 @@ def check_guess(row,column):
         print_board(GUESS_BOARD)
 
 def increment_turns():
-    pass
+    """
+    Reduces global variable turns by 1 each time it is called
+    prints turns remaining before game over.
+    """
+    global TURNS
+    TURNS -= 1
+    print(f'Turns remaining: {TURNS}')
 
 def main():
     """
