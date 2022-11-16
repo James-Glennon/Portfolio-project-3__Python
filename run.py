@@ -87,7 +87,9 @@ def check_guess(row,column):
     except KeyError:
         print('Please add both a valid row AND column')
         guess_location()
-
+    except IndexError:
+        print('Please select a row between 1 and 8')
+        guess_location()
 def increment_turns():
     """
     Reduces global variable turns by 1 each time it is called
