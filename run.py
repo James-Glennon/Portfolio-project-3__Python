@@ -65,21 +65,28 @@ def check_guess(row,column):
     row number starts at 1, and so is reduced by one in function to match zero indexing.
     *A dictionary 'letters_to_numbers' is used to convert column letters to index numbers
     """
-    if GUESS_BOARD[int(row) - 1][letters_to_numbers[column]] == '-' or GUESS_BOARD[int(row) - 1][letters_to_numbers[column]] == 'x':
-        print('\n You cannot target the same location more than once.\n please choose again.')
+    try:
+        if GUESS_BOARD[int(row) - 1][letters_to_numbers[column]] == '-' or GUESS_BOARD[int(row) - 1][letters_to_numbers[column]] == 'x':
+            print('\n You cannot target the same location more than once.\n please choose again.')
+            guess_location()
+
+        elif HIDDEN_BOARD[int(row) - 1][letters_to_numbers[column]] == 'x':
+            print('\n Hit! You sunk a battleship!')
+            GUESS_BOARD[int(row) - 1][letters_to_numbers[column]] = 'x'
+            increment_turns()
+            print_board(GUESS_BOARD)
+
+        else:
+            print(f'\n Miss. There is no battleship at this location.{row}{column}')
+            GUESS_BOARD[int(row) - 1][letters_to_numbers[column]] = '-'
+            increment_turns()
+            print_board(GUESS_BOARD)
+    except ValueError:
+        print('Please add a valid target location')
         guess_location()
-
-    elif HIDDEN_BOARD[int(row) - 1][letters_to_numbers[column]] == 'x':
-        print('\n Hit! You sunk a battleship!')
-        GUESS_BOARD[int(row) - 1][letters_to_numbers[column]] = 'x'
-        increment_turns()
-        print_board(GUESS_BOARD)
-
-    else:
-        print(f'\n Miss. There is no battleship at this location.{row}{column}')
-        GUESS_BOARD[int(row) - 1][letters_to_numbers[column]] = '-'
-        increment_turns()
-        print_board(GUESS_BOARD)
+    except KeyError:
+        print('Please add both a valid row AND column')
+        guess_location()
 
 def increment_turns():
     """
