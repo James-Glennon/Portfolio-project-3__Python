@@ -3,7 +3,7 @@ from random import randint
 HIDDEN_BOARD = [[' '] * 8 for x in range(8)]#The grid which maps the ship locations
 GUESS_BOARD = [[' '] * 8 for x in range(8)]#The grid which marks the player's previous guesses
 
-TURNS = 20
+TURNS = 30
 letters_to_numbers = {'A':0,'B':1,'C':2,'D':3,'E':4,'F':5,'G':6,'H':7}
 
 
@@ -18,7 +18,7 @@ def print_board(board):
     for row in board:
         print(f'{row_number}|'+'|'.join(row)+'|')
         row_number += 1
-
+    print("Legend: 'x' = hit, '-' = miss")
 def create_ships(board):
     """
     Creates random locations for 5 single-cell battleships.
@@ -124,7 +124,7 @@ def new_game():
         global GUESS_BOARD 
         GUESS_BOARD = [[' '] * 8 for x in range(8)]#The grid which marks the player's previous guesses
         global TURNS
-        TURNS = 20
+        TURNS = 30
         main()
     elif replay.upper() == 'N':
         exit()
@@ -140,7 +140,7 @@ def main():
     game ends when the loop is broken.
     """
     print('\nWelcome to battleships')
-    print(f'You have {TURNS} to sink all 5 ships.')
+    print(f'You have {TURNS} turns to sink all 5 ships.')
     create_ships(HIDDEN_BOARD)
     print_board(GUESS_BOARD)
     while TURNS > 0:
