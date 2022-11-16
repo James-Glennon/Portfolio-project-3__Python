@@ -2,7 +2,10 @@ from random import randint
 
 HIDDEN_BOARD = [[' '] * 8 for x in range(8)]#The grid which maps the ship locations
 GUESS_BOARD = [[' '] * 8 for x in range(8)]#The grid which marks the player's previous guesses
+
 turns = 20
+letters_to_numbers = {'A':0,'B':1,'C':2,'D':3,'E':4,'F':5,'G':6,'H':7}
+
 
 def print_board(board):
     """
@@ -48,8 +51,38 @@ def guess_location():
         print('Please enter a valid column')
         column = input(f'Please enter a column from A to H: ').upper()
 
-    print (row,column)
+    return (row,column)
 
+def check_guess(row,column):
+    """
+    Checks to see if the passed arguments are already marked on the GUESS_BOARD
+        if so, the player is asked to select another location
+        turns is NOT incremented
+    Otherwise, the HIDDEN_BOARD is checked for a ship
+        if present, the GUESS_BOARD is marked with 'x' to show a hit.
+        if absent, the GUESS_BOARD is marked with a '-' to show a miss.
+        hit or miss, turns is incremented 
+    row number starts at 1, and so is reduced by one in function to match zero indexing.
+    *A dictionary 'letters_to_numbers' is used to convert column letters to index numbers
+    """
+    if GUESS_BOARD[int(row) - 1][letters_to_numbers[column]] == '-' or GUESS_BOARD[int(row) - 1][letters_to_numbers[column]] == 'x':
+        print('\n You cannot target the same location more than once.\n please choose again.')
+        guess_location()
+
+    elif HIDDEN_BOARD[int(row) - 1][letters_to_numbers[column]] == 'x':
+        print('\n Hit! You sunk a battleship!')
+        GUESS_BOARD[int(row) - 1][letters_to_numbers[column]] = 'x'
+        increment_turns()
+        print_board(GUESS_BOARD)
+
+    else:
+        print(f'\n Miss. There is no battleship at this location.{row}{column}')
+        GUESS_BOARD[int(row) - 1][letters_to_numbers[column]] = '-'
+        increment_turns()
+        print_board(GUESS_BOARD)
+
+def increment_turns():
+    pass
 
 def main():
     """
@@ -61,6 +94,7 @@ def main():
     print('')
     print('Guess board')
     print_board(GUESS_BOARD)
-    guess_location()
+    guess_row, guess_column = guess_location()
+    check_guess(guess_row, guess_column)
 
 main()
